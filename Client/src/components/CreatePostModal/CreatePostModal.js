@@ -1,7 +1,7 @@
 import { Modal } from 'antd'
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../../contexts/AppContext'
-import {addDoc, arrayUnion, collection, doc, serverTimestamp, setDoc, updateDoc} from 'firebase/firestore';
+import {addDoc, collection} from 'firebase/firestore';
 import { db, storage } from '../../firebase/config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import './CreatePostModal.scss'

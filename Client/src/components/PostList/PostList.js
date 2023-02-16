@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {  collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import './PostList.scss'

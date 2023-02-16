@@ -11,12 +11,12 @@ const SocketProvider = ({children}) => {
         setSocket(io("http://localhost:5000"));
          
        }, []);
-       console.log(socket)
+  
        useEffect(() => {
          socket?.emit("newUser", currentUser);
        }, [currentUser, socket]);
 
-       console.log(socket)
+
   return (
     <SocketContext.Provider value={{socket}}>
         {children}

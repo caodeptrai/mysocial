@@ -79,7 +79,7 @@ const Search = () => {
   const [value, setValue] = useState([]);
 
    const { currentUser } = useContext(AuthContext);
-  const {setOpenProfile,setUserInfo,setOpenProfileOwner,userInfo} = useContext(AppContext)
+  const {setOpenProfile,setUserInfo,setOpenProfileOwner} = useContext(AppContext)
 
     const handleSelect = async (value,option) => {
 
