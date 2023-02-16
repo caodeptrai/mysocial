@@ -43,7 +43,7 @@ import './Auth.scss';
   return (
     <div className='formContainer'>
         <div className="formWrapper">
-            <span className="logo">ZaloChat</span>
+            <span className="logo">Mysocial</span>
             <span className="title">Đăng nhập</span>
 
             <form>
