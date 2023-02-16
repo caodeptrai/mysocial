@@ -1,6 +1,7 @@
 import { Avatar } from 'antd'
 import { collection, doc, onSnapshot, query, updateDoc, where } from 'firebase/firestore'
 import React, { useContext, useEffect, useState } from 'react'
+import { Socket } from 'socket.io-client'
 import { AppContext } from '../../contexts/AppContext'
 import { AuthContext } from '../../contexts/AuthContext'
 import { db } from '../../firebase/config'
@@ -26,10 +27,11 @@ const Left = () => {
           following:[...userImpl[0].following,item.uid],
           }),
       updateDoc(doc(db,"users",item.uid),{
-          follows:[...userImpl[0].follows,item.uid],
+          follows:[...item.follows,userImpl[0].uid],
           }) 
   ])
  
+    handleNotification(item)
   }
 
   const handleShowUserInfo = (data)=> {
@@ -39,6 +41,21 @@ const Left = () => {
     
   }
 
+
+  
+    const handleNotification = (data) => {
+      
+      // Socket.emit("sendNotification", {
+      //    senderName: currentUser.displayName,
+      //   receiverName: data.displayName,
+      //   type:1,
+      // });
+
+      console.log("data",data)
+
+    
+
+    };
   return (
     <div>
       <h2 className='propose-title'>Đề xuất</h2>
