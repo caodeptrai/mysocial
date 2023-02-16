@@ -1,0 +1,12 @@
+.container-post {
+    display: flex;
+    flex-direction: column;
+
+    .input-status {
+        height: 48px;
+        border-radius: 4px;
+        padding: 4px;
+        border: 1px solid #ccc;
+       margin-bottom: 12px;
+    }
+}
