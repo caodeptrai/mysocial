@@ -69,11 +69,7 @@ const AppProvider = ({ children }) => {
 
       const posts = useFirestore('posts', postsCondition);
 
-      const abc = ()=> {
-        localStorage.setItem('gfg',"avc")
-      }
-  
-      abc();
+     
 
     return <AppContext.Provider value={{ 
         openPost,

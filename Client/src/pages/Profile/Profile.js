@@ -7,7 +7,7 @@ import { AppContext } from '../../contexts/AppContext'
 import './Profile.scss'
 const Profile = () => {
     const {userImpl,posts} = useContext(AppContext)
-    console.log("userIpómpl",posts)
+
 
   return (
     <div>

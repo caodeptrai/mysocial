@@ -16,12 +16,6 @@ const ProfileOwner = () => {
         return ()=> unsub
     },[userImpl, userProfile])
 
-  
-
-      
-
-     
-    
     const handleFollow = async ()=> {
     
         await Promise.all([
@@ -82,7 +76,7 @@ const ProfileOwner = () => {
                 <span>Đang theo dõi</span>
             </div>
             <div className='pro-content-pra-item'>
-                <span className='pro-pra-quantity'>{userProfile[0]?.posts?.length}</span>
+                <span className='pro-pra-quantity'>{posts?.length}</span>
                 <span>Bài viết</span>
             </div>
         </div>
