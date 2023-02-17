@@ -14,10 +14,7 @@ const Post = ({ post }) => {
     const [userPost, setUserPost] = useState([]);
     const { currentUser } = useContext(AuthContext);
     const [likeList, setLikeList] = useState([]);
-    const [isLike, setIsLike] = useState(() => {
-        const storageJobs = JSON.parse(localStorage.getItem('like'));
-        return storageJobs ?? [];
-    });
+    const [isLike, setIsLike] = useState(false);
     TimeAgo.addLocale(vi);
     useEffect(() => {
         const q = query(collection(db, 'users'), where('uid', '==', post.creatorId));
@@ -33,11 +30,6 @@ const Post = ({ post }) => {
         };
     }, [post]);
 
-    const abc = () => {
-        localStorage.setItem('gfg', 'avc');
-    };
-
-    abc();
     const handleLike = async () => {
         setIsLike(!isLike);
 
