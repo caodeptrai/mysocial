@@ -1,0 +1,48 @@
+.center-content {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.center-content-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .center-conent-heading-left {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.content-icon {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.center-content-heading-wrap {
+    margin-left: 8px;
+}
+
+.center-name {
+    margin: 0;
+}
+
+.center-content-img {
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.center-content-menu {
+    display: flex;
+    align-items: center;
+
+    .center-content-menu-wrap {
+        margin-right: 20px;
+        font-size: 16px;
+    }
+
+    .content-menu-icon {
+        padding-right: 6px;
+    }
+}
