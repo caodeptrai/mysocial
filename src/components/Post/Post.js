@@ -14,7 +14,7 @@ const Post = ({ post }) => {
     const [userPost, setUserPost] = useState([]);
     const { currentUser } = useContext(AuthContext);
     const [likeList, setLikeList] = useState([]);
-    const [isLike, setIsLike] = useState(false);
+    const [isLike, setIsLike] = useState(true);
     TimeAgo.addLocale(vi);
     useEffect(() => {
         const q = query(collection(db, 'users'), where('uid', '==', post.creatorId));
