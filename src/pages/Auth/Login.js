@@ -8,29 +8,16 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [validateMsg, setValidateMsg] = useState('');
-
+    const [err, setErr] = useState(false);
     const navigate = useNavigate();
 
     // login with email
     const handleSubmit = async () => {
-        const msg = {};
-        if (!email) {
-            msg.email = 'Vui lòng nhập email !';
-            setValidateMsg(msg);
-            //  return;
-        }
-        if (!password) {
-            msg.password = 'Vui lòng nhập mật khẩu !';
-            setValidateMsg(msg);
-            // return;
-        }
         try {
             await signInWithEmailAndPassword(auth, email, password);
-
             navigate('/');
         } catch (err) {
-            msg.mesasge = 'Email hoặc mật khẩu không chính xác !';
-            setValidateMsg(msg);
+            setErr(true);
         }
     };
 
@@ -54,13 +41,11 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <p className="errorMsg">{validateMsg.password}</p>
+                    {err && <p className="errorMsg">Có lỗi vui lòng kiểm tra lại !!!</p>}
                     <button type="button" className="btn" onClick={handleSubmit}>
                         Đăng nhập
                     </button>
                 </form>
-
-                <p className="errorMsg">{validateMsg.mesasge}</p>
 
                 <p>
                     Bạn chưa có tài khoản?

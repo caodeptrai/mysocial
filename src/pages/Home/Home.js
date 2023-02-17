@@ -13,7 +13,6 @@ const Home = () => {
     const { darkMode } = useContext(AppContext);
     const openCreatePostModal = () => {
         setIsVisibleCreatePost(true);
-        console.log('hhh');
     };
     const icon = <FontAwesomeIcon icon={faPlus} />;
     return (
@@ -25,7 +24,6 @@ const Home = () => {
             </Row>
             <Row>
                 <Col span={6}>
-                    {' '}
                     <Left />
                 </Col>
                 <Col span={12}>

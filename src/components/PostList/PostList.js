@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import './PostList.scss';
 import Post from '../Post/Post';
@@ -8,7 +8,7 @@ const PostList = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        const q = query(collection(db, 'posts'), orderBy('createAt'));
+        const q = query(collection(db, 'posts'));
 
         const unsubscribe = onSnapshot(q, (doc) => {
             const postdata = [];
