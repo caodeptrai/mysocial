@@ -1,5 +1,6 @@
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Post from '../../components/Post/Post';
 import { AppContext } from '../../contexts/AppContext';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -39,6 +40,53 @@ const ProfileOwner = () => {
             }),
         ]);
     };
+
+    const handleChat = async () => {
+        //check whether the group(chats in firestore) exists, if not create
+        const combinedId =
+            currentUser.uid > userProfile[0]?.uid
+                ? currentUser.uid + userProfile[0]?.uid
+                : userProfile[0]?.uid + currentUser.uid;
+        try {
+            const res = await getDoc(doc(db, 'chats', combinedId));
+
+            if (!res.exists()) {
+                //create a chat in chats collection
+                await setDoc(doc(db, 'chats', combinedId), { messages: [] });
+
+                //create user chats
+                await updateDoc(doc(db, 'userChats', currentUser.uid), {
+                    [combinedId]: {
+                        userInfo: {
+                            uid: userProfile[0]?.uid,
+                            displayName: userProfile[0]?.displayName,
+                            email: userProfile[0]?.email,
+                            photoURL: userProfile[0]?.photoURL,
+                        },
+                        date: serverTimestamp(),
+                    },
+
+                    // viet tat
+                    //   [combinedId + ".userInfo"]: {
+                    //     uid: user.uid,
+                    //     displayName: user.displayName,
+                    //     photoURL: user.photoURL,
+                    //   },
+                    //  [combinedId + ".date"]: serverTimestamp(),
+                });
+
+                await updateDoc(doc(db, 'userChats', userProfile[0]?.uid), {
+                    [combinedId + '.userInfo']: {
+                        uid: currentUser.uid,
+                        displayName: currentUser.displayName,
+                        photoURL: currentUser.photoURL,
+                        email: userProfile[0]?.email,
+                    },
+                    [combinedId + '.date']: serverTimestamp(),
+                });
+            }
+        } catch (err) {}
+    };
     return (
         <div>
             <div className="pro">
@@ -48,6 +96,10 @@ const ProfileOwner = () => {
                             <img className="rightAvatar" src={userProfile[0]?.photoURL} alt="" />
                             <h3 className="info-name">{userProfile[0]?.displayName}</h3>
                         </div>
+
+                        <Link to={`/inbox/${userProfile[0]?.uid}`} className="btn-chat" onClick={handleChat}>
+                            Nhắn tin
+                        </Link>
 
                         {btnFollowVisible ? (
                             <button className="btn-unfollow" onClick={handleUnFollow}>

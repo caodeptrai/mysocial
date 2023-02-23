@@ -1,4 +1,4 @@
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { db } from '../firebase/config';
 
@@ -17,6 +17,7 @@ const useFirestore = (collect, condition) => {
         const q = query(
             collection(db, collect),
             where(condition.fieldName, condition.operator, condition.compareValue),
+            orderBy('createdAt'),
         );
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const data = [];

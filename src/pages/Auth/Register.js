@@ -50,6 +50,8 @@ const Register = () => {
                                 posts: [],
                                 keywords: generateKeywords(displayName),
                             }),
+                            //create empty user chats on firestore
+                            setDoc(doc(db, 'userChats', res.user.uid), {}),
                         ]);
                         navigate('/');
                     } catch (err) {

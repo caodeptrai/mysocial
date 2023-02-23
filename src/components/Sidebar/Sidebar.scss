@@ -1,0 +1,51 @@
+.sidebar {
+    height: calc(100vh - 56px);
+
+    position: fixed;
+    top: 56px;
+    width: 337px;
+
+    .sidebar-container {
+        border-right: 1px solid #ccc;
+        height: 100%;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .item {
+            padding: 14px 0;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+
+            .title {
+                margin-left: 24px;
+            }
+            .titlePresonal {
+                margin-left: 12px;
+            }
+
+            .icon {
+                font-size: 20px;
+            }
+
+            &.active {
+                color: #f5222d;
+                font-weight: bold;
+            }
+        }
+
+        .content {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link {
+            text-decoration: none;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+    }
+}

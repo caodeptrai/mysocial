@@ -84,14 +84,16 @@
         }
     }
 
-    .btn-follow {
+    .btn-follow,
+    .btn-chat {
         background-color: #1677ff;
         border-radius: 4px;
         border: 1px solid transparent;
         color: #fff;
-        width: 100px;
-        height: 40px;
+        width: 80px;
+        padding: 10px;
         margin-top: 16px;
+        text-align: center;
 
         &:hover {
             opacity: 0.9;

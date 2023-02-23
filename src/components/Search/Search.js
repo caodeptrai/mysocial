@@ -6,6 +6,7 @@ import './Search.scss';
 import { AutoComplete, Avatar, Spin } from 'antd';
 import { debounce } from 'lodash';
 import { AppContext } from '../../contexts/AppContext';
+import { Link } from 'react-router-dom';
 
 function DebounceSearch({ fetchOptions, debounceTimeout = 300, ...props }) {
     // Search: abcddassdfasdf
@@ -43,10 +44,12 @@ function DebounceSearch({ fetchOptions, debounceTimeout = 300, ...props }) {
         >
             {options?.map((opt) => (
                 <AutoComplete.Option key={opt.uid} value={opt.displayName} title={opt.displayName} user={opt}>
-                    <Avatar size="small" src={opt.photoURL}>
-                        {opt.photoURL ? '' : opt.displayName?.charAt(0)?.toUpperCase()}
-                    </Avatar>
-                    {` ${opt.displayName}`}
+                    <Link to={`/profile/${opt.displayName}`}>
+                        <Avatar size="small" src={opt.photoURL}>
+                            {opt.photoURL ? '' : opt.displayName?.charAt(0)?.toUpperCase()}
+                        </Avatar>
+                        {` ${opt.displayName}`}
+                    </Link>
                 </AutoComplete.Option>
             ))}
         </AutoComplete>
@@ -57,13 +60,11 @@ const Search = () => {
     const [value, setValue] = useState([]);
 
     const { currentUser } = useContext(AuthContext);
-    const { setOpenProfile, setUserInfo, setOpenProfileOwner } = useContext(AppContext);
+    const { setUserInfo } = useContext(AppContext);
 
     const handleSelect = async (value, option) => {
         setValue('');
         setUserInfo(option.user);
-        setOpenProfile(false);
-        setOpenProfileOwner(true);
     };
 
     async function fetchUserList(search) {

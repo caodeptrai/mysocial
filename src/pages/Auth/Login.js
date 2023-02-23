@@ -7,7 +7,6 @@ import './Auth.scss';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [validateMsg, setValidateMsg] = useState('');
     const [err, setErr] = useState(false);
     const navigate = useNavigate();
 
@@ -34,7 +33,7 @@ const Login = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <p className="errorMsg">{validateMsg.email}</p>
+
                     <input
                         type="password"
                         placeholder="mật khẩu"
