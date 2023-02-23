@@ -65,6 +65,7 @@ const Search = () => {
     const handleSelect = async (value, option) => {
         setValue('');
         setUserInfo(option.user);
+        console.log('kmsfmf', option.user);
     };
 
     async function fetchUserList(search) {

@@ -8,6 +8,7 @@ import './Profile.scss';
 const Profile = () => {
     const { userImpl, posts } = useContext(AppContext);
 
+    console.log('userimp', userImpl);
     return (
         <div>
             <div className="pro">
@@ -30,11 +31,11 @@ const Profile = () => {
 
                     <div className="pro-content-pra">
                         <div className="pro-content-pra-item separe">
-                            <span className="pro-pra-quantity">{userImpl[0].follows?.length}</span>
+                            <span className="pro-pra-quantity">{userImpl[0]?.follows?.length}</span>
                             <span>Người theo dõi</span>
                         </div>
                         <div className="pro-content-pra-item separe">
-                            <span className="pro-pra-quantity">{userImpl[0].following?.length}</span>
+                            <span className="pro-pra-quantity">{userImpl[0]?.following?.length}</span>
                             <span>Đang theo dõi</span>
                         </div>
                         <div className="pro-content-pra-item">

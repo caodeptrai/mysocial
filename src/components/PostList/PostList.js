@@ -30,9 +30,11 @@ const PostList = () => {
 
     return (
         <div className="center-container">
-            {posts.map((item) => (
-                <Post post={item} key={item.id} />
-            ))}
+            {posts
+                ?.sort((a, b) => b.createAt - a.createAt)
+                .map((item) => (
+                    <Post post={item} key={item.id} />
+                ))}
         </div>
     );
 };

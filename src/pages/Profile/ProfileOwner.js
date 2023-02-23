@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom';
 import Post from '../../components/Post/Post';
 import { AppContext } from '../../contexts/AppContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { ChatContext } from '../../contexts/ChatContext';
 import { db } from '../../firebase/config';
 
 import './Profile.scss';
 const ProfileOwner = () => {
     const { currentUser } = useContext(AuthContext);
     const { userProfile, userImpl, posts } = useContext(AppContext);
+    const { dispatch } = useContext(ChatContext);
     const [btnFollowVisible, setBtnFollowVisible] = useState(false);
     useEffect(() => {
-        const unsub = setBtnFollowVisible(userImpl[0].following.includes(userProfile[0]?.uid));
+        const unsub = setBtnFollowVisible(userImpl[0]?.following.includes(userProfile[0]?.uid));
         return () => unsub;
     }, [userImpl, userProfile]);
 
@@ -86,6 +88,8 @@ const ProfileOwner = () => {
                 });
             }
         } catch (err) {}
+
+        dispatch({ type: 'CHANGE_USER', payload: userProfile[0] });
     };
     return (
         <div>

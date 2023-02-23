@@ -58,7 +58,7 @@ function App() {
                                                     element: <Home />,
                                                 },
                                                 {
-                                                    path: '/profile',
+                                                    path: '/myprofile',
                                                     element: <Profile />,
                                                 },
                                                 {

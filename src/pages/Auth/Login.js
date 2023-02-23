@@ -17,6 +17,7 @@ const Login = () => {
             navigate('/');
         } catch (err) {
             setErr(true);
+            console.log('loi');
         }
     };
 

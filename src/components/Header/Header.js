@@ -16,7 +16,7 @@ const Header = () => {
     const { darkMode, setDarkMode } = useContext(AppContext);
     const content = (
         <div className="sub-content-profile">
-            <Link to="/profile" className="view-profile">
+            <Link to="/myprofile" className="view-profile">
                 Xem trang cá nhân
             </Link>
             <div className="btn-logout" onClick={() => signOut(auth)}>
