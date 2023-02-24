@@ -1,8 +1,9 @@
 .center-content {
-    background-color: #fff;
+    background-color: var(--body_background);
     padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 1rem;
+    margin: 10px 0;
+    color: var(--body_color);
 }
 .center-content-heading {
     display: flex;

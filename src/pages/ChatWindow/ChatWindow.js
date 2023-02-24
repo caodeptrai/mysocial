@@ -16,7 +16,6 @@ const ChatWindow = () => {
         setIsProfileVisibleUser(true);
     };
 
-    console.log('data', data);
     return (
         <div className="chat">
             <div className="chat-container">

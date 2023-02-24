@@ -1,6 +1,6 @@
 .sidebar {
     height: calc(100vh - 56px);
-
+    background-color: var(--body_background);
     position: fixed;
     top: 56px;
     width: 337px;
@@ -18,7 +18,7 @@
             font-size: 16px;
             font-weight: 400;
             cursor: pointer;
-
+            color: var(--body_color);
             .title {
                 margin-left: 24px;
             }
@@ -43,7 +43,7 @@
 
         .link {
             text-decoration: none;
-            color: #000;
+            color: var(--body_color);
             display: flex;
             align-items: center;
         }

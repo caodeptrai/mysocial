@@ -6,7 +6,6 @@ export const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
     const { currentUser } = useContext(AuthContext);
     const [openPost, setOpenPost] = useState();
-    const [darkMode, setDarkMode] = useState(false);
     const [userInfo, setUserInfo] = useState({});
     const [user, setUser] = useState('');
 
@@ -65,8 +64,6 @@ const AppProvider = ({ children }) => {
             value={{
                 openPost,
                 setOpenPost,
-                darkMode,
-                setDarkMode,
                 userImpl,
                 followers,
                 following,

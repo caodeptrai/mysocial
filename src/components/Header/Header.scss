@@ -5,11 +5,8 @@
     width: 100%;
     top: 0;
     z-index: 1;
-    background-color: #fff;
+    background-color: var(--body_background);
 
-    &.header-dark {
-        background-color: #1a1919;
-    }
     .header-container {
         display: flex;
         justify-content: space-between;
@@ -32,6 +29,10 @@
         .header-menu {
             display: flex;
             align-items: center;
+
+            .dark-mode-container {
+                margin-right: 8px;
+            }
         }
 
         .header-avatar {

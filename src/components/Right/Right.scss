@@ -1,9 +1,13 @@
 .right {
-    background-color: #fff;
+    background-color: var(--body_background);
+    border-radius: 1rem;
+    padding: 10px;
 }
 
 .friend-title {
     margin-left: 10px;
+    color: var(--body_color);
+    margin: 0;
 }
 
 .friend-list {
@@ -16,10 +20,11 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    color: #000;
+    color: var(--body_color);
 
     &:hover {
-        background-color: #fafafa;
+        background-color: var(--background_input);
+        border-radius: 1rem;
     }
 
     &:hover .friend-btn-unfl {

@@ -1,7 +1,7 @@
 .PostShare {
     display: flex;
     gap: 1rem;
-    background-color: rgba(255, 255, 255, 0.64);
+    background-color: var(--body_background);
     padding: 10px;
     border-radius: 1rem;
 
@@ -18,7 +18,7 @@
         gap: 1rem;
 
         input {
-            background-color: rgba(40, 52, 62, 0.07);
+            background-color: var(--background_input);
             border-radius: 10px;
             padding: 10px;
             font-size: 17px;

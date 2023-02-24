@@ -29,7 +29,7 @@ const PostList = () => {
     }, []);
 
     return (
-        <div className="center-container">
+        <div>
             {posts
                 ?.sort((a, b) => b.createAt - a.createAt)
                 .map((item) => (

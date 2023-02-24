@@ -1,6 +1,6 @@
 .input {
     height: 75px;
-    background-color: white;
+    background-color: var(--body_background);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,7 +34,7 @@
         button {
             border: none;
             padding: 10px 15px;
-            color: black;
+            color: var(--body_color);
             background-color: transparent;
             cursor: pointer;
         }

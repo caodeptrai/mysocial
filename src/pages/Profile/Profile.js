@@ -8,7 +8,6 @@ import './Profile.scss';
 const Profile = () => {
     const { userImpl, posts } = useContext(AppContext);
 
-    console.log('userimp', userImpl);
     return (
         <div>
             <div className="pro">
