@@ -59,6 +59,17 @@ const AppProvider = ({ children }) => {
 
     const posts = useFirestore('posts', postsCondition);
 
+    const myPostsCondition = React.useMemo(() => {
+        return {
+            fieldName: 'creatorId',
+            operator: '==',
+            compareValue: currentUser.uid,
+        };
+    }, [currentUser.uid]);
+
+    const myPosts = useFirestore('posts', myPostsCondition);
+
+    console.log('post', myPosts);
     return (
         <AppContext.Provider
             value={{
@@ -73,6 +84,7 @@ const AppProvider = ({ children }) => {
                 user,
                 setUser,
                 posts,
+                myPosts,
             }}
         >
             {children}

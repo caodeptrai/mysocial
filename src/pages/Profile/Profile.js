@@ -6,7 +6,7 @@ import { AppContext } from '../../contexts/AppContext';
 
 import './Profile.scss';
 const Profile = () => {
-    const { userImpl, posts } = useContext(AppContext);
+    const { userImpl, myPosts } = useContext(AppContext);
 
     return (
         <div>
@@ -38,14 +38,14 @@ const Profile = () => {
                             <span>Đang theo dõi</span>
                         </div>
                         <div className="pro-content-pra-item">
-                            <span className="pro-pra-quantity">{posts?.length}</span>
+                            <span className="pro-pra-quantity">{myPosts?.length}</span>
                             <span>Bài viết</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                {posts.map((item) => (
+                {myPosts.map((item) => (
                     <Post post={item} key={item.id} />
                 ))}
             </div>
