@@ -18,6 +18,7 @@
 
 .content-icon {
     font-size: 18px;
+    color: var(--body_color);
     cursor: pointer;
 }
 
@@ -45,5 +46,6 @@
 
     .content-menu-icon {
         padding-right: 6px;
+        color: var(--body_color);
     }
 }

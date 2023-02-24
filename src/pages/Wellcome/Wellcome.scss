@@ -1,6 +1,6 @@
 .container {
     text-align: center;
-
+    color: var(--body_color);
     .wellcomeTitle {
         margin-top: 45px;
         font-weight: bold;
@@ -11,12 +11,11 @@
     .wellcomeImg {
         width: 380px;
     }
-    
+
     .wellcomeSubTitle {
         margin-top: 45px;
         color: #0091ff;
         font-weight: 600;
         font-size: 18px;
     }
-
 }

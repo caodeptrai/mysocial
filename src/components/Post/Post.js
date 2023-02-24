@@ -68,12 +68,7 @@ const Post = ({ post }) => {
             <div className="center-content-menu">
                 <div className="center-content-menu-wrap">
                     {isLike ? (
-                        <FontAwesomeIcon
-                            style={{ color: '#000' }}
-                            className="content-menu-icon"
-                            icon={faHeart}
-                            onClick={handleLike}
-                        />
+                        <FontAwesomeIcon className="content-menu-icon" icon={faHeart} onClick={handleLike} />
                     ) : (
                         <FontAwesomeIcon
                             style={{ color: 'red' }}
