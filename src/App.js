@@ -1,92 +1,55 @@
-import { Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
-import Home from './pages/Home/Home';
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Inbox from './pages/Inbox/Inbox';
-import Profile from './pages/Profile/Profile';
-import Watch from './pages/Watch/Watch';
-import Error from './pages/Error/Error';
-import ProfileOwner from './pages/Profile/ProfileOwner';
-import ChatWindow from './pages/ChatWindow/ChatWindow';
+
+import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
-import Explore from './pages/Explore/Explore';
-import { AuthLayout, Layout } from './Layouts';
+
+import { privateRoutes, publicRoutes } from './routes/routes';
+
+import MainLayout from './Layouts/MainLayout';
+import AppProvider from './contexts/AppContext';
 
 function App() {
     const { currentUser } = useContext(AuthContext);
 
     const ProtectedRoute = ({ children }) => {
-        console.log('cuu', currentUser);
         if (!currentUser) {
             return <Navigate to="/login" />;
         }
 
-        return <Outlet />;
+        return children;
     };
 
-    const router = createBrowserRouter([
-        {
-            element: <AuthLayout />,
-            errorElement: <Error />,
-            children: [
-                {
-                    path: '/login',
-                    element: <Login />,
-                },
-                {
-                    path: '/register',
-                    element: <Register />,
-                },
-                {
-                    path: '/',
-                    element: <ProtectedRoute />,
-                    children: [
-                        {
-                            path: '/',
-                            element: <Layout />,
-                            children: [
-                                {
-                                    path: '/',
-                                    element: <Home />,
-                                },
-                                {
-                                    path: '/myprofile',
-                                    element: <Profile />,
-                                },
-                                {
-                                    path: `/profile/:userId`,
-                                    element: <ProfileOwner />,
-                                },
-                                {
-                                    path: '/watch',
-                                    element: <Watch />,
-                                },
-                                {
-                                    path: '/explore',
-                                    element: <Explore />,
-                                },
-                                {
-                                    path: '/inbox',
-                                    element: <Inbox />,
-                                    children: [
-                                        {
-                                            path: `/inbox/:inboxId`,
-                                            element: <ChatWindow />,
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        },
-    ]);
+    return (
+        <BrowserRouter>
+            <Routes>
+                {publicRoutes.map((route, index) => {
+                    const Page = route.component;
+                    return <Route key={index} path={route.path} element={<Page />} />;
+                })}
 
-    return <RouterProvider router={router} />;
+                {privateRoutes.map((route, index) => {
+                    const Page = route.component;
+
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <ProtectedRoute>
+                                    <AppProvider>
+                                        <MainLayout>
+                                            <Page />
+                                        </MainLayout>
+                                    </AppProvider>
+                                </ProtectedRoute>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;

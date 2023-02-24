@@ -69,7 +69,6 @@ const AppProvider = ({ children }) => {
 
     const myPosts = useFirestore('posts', myPostsCondition);
 
-    console.log('post', myPosts);
     return (
         <AppContext.Provider
             value={{

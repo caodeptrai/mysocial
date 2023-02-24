@@ -48,7 +48,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                         className={toggleState === 4 ? 'link item active' : 'link item'}
-                        to="./inbox"
+                        to="/inbox"
                         onClick={() => toggleTab(4)}
                     >
                         <i className="icon fa-brands fa-facebook-messenger"></i>
