@@ -1,7 +1,7 @@
 import React from 'react';
 import './Center.scss';
 import PostList from '../PostList/PostList';
-import PostShare from '../postShare/PostShare';
+import PostShare from '../PostShare/PostShare';
 
 const Center = () => {
     return (
