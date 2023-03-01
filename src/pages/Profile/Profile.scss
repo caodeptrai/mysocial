@@ -132,3 +132,12 @@
         }
     }
 }
+
+.posts-content {
+    display: flex;
+    justify-content: flex-start;
+
+    .posts-wrap {
+        max-width: 1000px;
+    }
+}

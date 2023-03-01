@@ -44,10 +44,12 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                {myPosts.map((item) => (
-                    <Post post={item} key={item.id} />
-                ))}
+            <div className="posts-content">
+                <div className="posts-wrap">
+                    {myPosts.map((item) => (
+                        <Post post={item} key={item.id} />
+                    ))}
+                </div>
             </div>
         </div>
     );
