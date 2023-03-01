@@ -135,10 +135,12 @@ const ProfileOwner = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                {posts.map((item) => (
-                    <Post post={item} key={item.id} />
-                ))}
+            <div className="posts-content">
+                <div className="posts-wrap">
+                    {posts.map((item) => (
+                        <Post post={item} key={item.id} />
+                    ))}
+                </div>
             </div>
         </div>
     );
