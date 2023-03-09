@@ -9,12 +9,14 @@ import ReactTimeAgo from 'react-time-ago';
 import TimeAgo from 'javascript-time-ago';
 import vi from 'javascript-time-ago/locale/vi';
 import { AuthContext } from '../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import { AppContext } from '../../contexts/AppContext';
 
 const Post = ({ post }) => {
     const [userPost, setUserPost] = useState([]);
     const { currentUser } = useContext(AuthContext);
-    const [likeList, setLikeList] = useState([]);
-    const [isLike, setIsLike] = useState(true);
+    const { setUserInfo } = useContext(AppContext);
+    const [liked, setLiked] = useState(false);
     TimeAgo.addLocale(vi);
     useEffect(() => {
         const q = query(collection(db, 'users'), where('uid', '==', post.creatorId));
@@ -30,36 +32,39 @@ const Post = ({ post }) => {
         };
     }, [post]);
 
+    useEffect(() => {
+        const checkLiked = post.likes.includes(currentUser?.uid);
+        setLiked(checkLiked);
+    }, [currentUser.uid, post.likes]);
+
     const handleLike = async () => {
-        setIsLike(!isLike);
+        console.log('click');
+        if (liked) {
+            const unlike = post.likes.filter((item) => item !== currentUser?.uid);
 
-        //   //save to local storage
-        //   const rs = JSON.stringify(isLike)
-        //  localStorage.setItem('like',rs)
-
-        //    console.log("gia tri isLike",isLike)
-        if (isLike === true) {
             await updateDoc(doc(db, 'posts', post.docId), {
-                likes: [...post.likes, currentUser.uid],
+                likes: [...unlike],
             });
         } else {
-            setLikeList(post.likes.filter((item) => item !== currentUser.uid));
-
             await updateDoc(doc(db, 'posts', post.docId), {
-                likes: [...likeList],
+                likes: [...post.likes, currentUser.uid],
             });
         }
     };
     return (
         <div className="center-content">
             <div className="center-content-heading">
-                <div className="center-conent-heading-left">
+                <Link
+                    to={`/profile/${userPost.displayName}`}
+                    className="center-conent-heading-left"
+                    onClick={() => setUserInfo(userPost)}
+                >
                     <Avatar size={36} src={userPost.photoURL}></Avatar>
                     <div className="center-content-heading-wrap">
                         <h3 className="center-name">{userPost.displayName}</h3>
                         <ReactTimeAgo date={post.createAt} locale="vi" />
                     </div>
-                </div>
+                </Link>
 
                 <FontAwesomeIcon className="content-icon" icon={faXmark} />
             </div>
@@ -67,14 +72,22 @@ const Post = ({ post }) => {
             <img className="center-content-img" src={post.photoURL} alt="" />
             <div className="center-content-menu">
                 <div className="center-content-menu-wrap">
-                    {isLike ? (
-                        <FontAwesomeIcon className="content-menu-icon" icon={faHeart} onClick={handleLike} />
-                    ) : (
+                    {liked ? (
                         <FontAwesomeIcon
                             style={{ color: 'red' }}
                             className="content-menu-icon"
                             icon={faHeart}
-                            onClick={handleLike}
+                            onClick={() => {
+                                handleLike();
+                            }}
+                        />
+                    ) : (
+                        <FontAwesomeIcon
+                            className="content-menu-icon"
+                            icon={faHeart}
+                            onClick={(e) => {
+                                handleLike();
+                            }}
                         />
                     )}
 

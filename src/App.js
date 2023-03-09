@@ -44,8 +44,9 @@ function App() {
                             <Route path="/profile/:userId" element={<ProfileOwner />} />
                             <Route path="/watch" element={<Watch />} />
                             <Route path="/explore" element={<Explore />} />
-                            <Route path="/inbox" element={<Inbox />} />
-                            <Route path="/inbox/:inboxId" element={<ChatWindow />} />
+                            <Route path="/inbox" element={<Inbox />}>
+                                <Route path="/inbox/:inboxId" element={<ChatWindow />} />
+                            </Route>
                         </Route>
                     </Route>
                 </Route>
