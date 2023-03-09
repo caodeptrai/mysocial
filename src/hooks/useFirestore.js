@@ -23,7 +23,7 @@ const useFirestore = (collect, condition) => {
             let res = {};
             querySnapshot.forEach((doc) => {
                 res = {
-                    id: doc.id,
+                    docId: doc.id,
                     ...doc.data(),
                 };
                 data.push(res);

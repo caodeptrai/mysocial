@@ -38,10 +38,8 @@ const Post = ({ post }) => {
     }, [currentUser.uid, post.likes]);
 
     const handleLike = async () => {
-        console.log('click');
         if (liked) {
             const unlike = post.likes.filter((item) => item !== currentUser?.uid);
-
             await updateDoc(doc(db, 'posts', post.docId), {
                 likes: [...unlike],
             });
